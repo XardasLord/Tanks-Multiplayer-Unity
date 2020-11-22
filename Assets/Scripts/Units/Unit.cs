@@ -8,12 +8,47 @@ namespace Units
     {
         [SerializeField] private UnitMovement unitMovement;
 
-        public event Action OnSelected = delegate { };
-        public event Action OnDeselected = delegate { };
+        public event Action AuthorityOnSelected = delegate { };
+        public event Action AuthorityOnDeselected = delegate { };
+        public static event Action<Unit> AuthorityOnUnitSpawned = delegate { };
+        public static event Action<Unit> AuthorityOnUnitDespawned = delegate { };
+
+        public static event Action<Unit> ServerOnUnitSpawned = delegate { };
+        public static event Action<Unit> ServerOnUnitDespawned = delegate { };
 
         public UnitMovement GetUnitMovement() => unitMovement;
 
+        #region Server
+
+        public override void OnStartServer()
+        {
+            ServerOnUnitSpawned(this);
+        }
+
+        public override void OnStopServer()
+        {
+            ServerOnUnitDespawned(this);
+        }
+
+        #endregion
+
         #region Client
+
+        public override void OnStartClient()
+        {
+            if (!isClientOnly || !hasAuthority)
+                return;
+
+            AuthorityOnUnitSpawned(this);
+        }
+
+        public override void OnStopClient()
+        {
+            if (!isClientOnly || !hasAuthority)
+                return;
+
+            AuthorityOnUnitDespawned(this);
+        }
 
         [Client]
         public void Select()
@@ -21,7 +56,7 @@ namespace Units
             if (!hasAuthority)
                 return;
 
-            OnSelected();
+            AuthorityOnSelected();
         }
 
         [Client]
@@ -30,7 +65,7 @@ namespace Units
             if (!hasAuthority)
                 return;
 
-            OnDeselected();
+            AuthorityOnDeselected();
         }
 
         #endregion

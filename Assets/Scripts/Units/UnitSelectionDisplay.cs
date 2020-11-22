@@ -8,8 +8,8 @@ namespace Units
 
         private void Awake()
         {
-            GetComponent<Unit>().OnSelected += ShowSelectionHighlight;
-            GetComponent<Unit>().OnDeselected += HideSelectionHighlight;
+            GetComponent<Unit>().AuthorityOnSelected += ShowSelectionHighlight;
+            GetComponent<Unit>().AuthorityOnDeselected += HideSelectionHighlight;
         }
 
         private void ShowSelectionHighlight() 
