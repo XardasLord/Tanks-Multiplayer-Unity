@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  unitMovement: {fileID: 1754040047140818692}
 --- !u!114 &3574811184459795184
 MonoBehaviour:
   m_ObjectHideFlags: 0
