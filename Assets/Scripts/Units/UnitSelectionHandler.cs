@@ -43,7 +43,8 @@ namespace Units
 
         private void StartSelectionArea()
         {
-            DeselectAllUnits();
+            if (!Keyboard.current.leftShiftKey.isPressed)
+                DeselectAllUnits();
 
             unitSelectionArea.gameObject.SetActive(true);
 
@@ -115,6 +116,9 @@ namespace Units
 
             foreach (var unit in _player.GetMyUnits())
             {
+                if (SelectedUnits.Contains(unit))
+                    continue;
+                
                 var screenPosition = _mainCamera.WorldToScreenPoint(unit.transform.position);
 
                 if (screenPosition.x > min.x &&
