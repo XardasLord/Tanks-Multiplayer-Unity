@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &730487571611170314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7677868125730209518}
+  m_Layer: 0
+  m_Name: AimAtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7677868125730209518
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730487571611170314}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2825488450317972359}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2880546072877878225
 GameObject:
   m_ObjectHideFlags: 0
@@ -16,6 +46,8 @@ GameObject:
   - component: {fileID: 1754040047140818692}
   - component: {fileID: 4653248224396680032}
   - component: {fileID: 3574811184459795184}
+  - component: {fileID: 5525439645333994220}
+  - component: {fileID: -8476093371600895784}
   m_Layer: 0
   m_Name: Unit
   m_TagString: Untagged
@@ -36,6 +68,7 @@ Transform:
   m_Children:
   - {fileID: 358338541692869153}
   - {fileID: 2257443372923994704}
+  - {fileID: 7677868125730209518}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,6 +156,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   agent: {fileID: -653644201578368563}
+  targeter: {fileID: -8476093371600895784}
 --- !u!114 &4653248224396680032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +172,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   unitMovement: {fileID: 1754040047140818692}
+  targeter: {fileID: -8476093371600895784}
 --- !u!114 &3574811184459795184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +186,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitSelectionHighlight: {fileID: 3760227981774902174}
+--- !u!114 &5525439645333994220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880546072877878225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664ab7898f0142648adb34c0a5944775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  aimAtPoint: {fileID: 7677868125730209518}
+--- !u!114 &-8476093371600895784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2880546072877878225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b56f02df64cfa4aaf05e9d0b1d229c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 0}
 --- !u!1 &5840117822402648158
 GameObject:
   m_ObjectHideFlags: 0
