@@ -5,8 +5,7 @@ namespace Combat
 {
     public class Targeter : NetworkBehaviour
     {
-        // TODO: [SerializeField] attribute only for testing
-        [SerializeField] private Targetable _target;
+        public Targetable Target { get; private set; }
 
         #region Server
 
@@ -16,17 +15,11 @@ namespace Combat
             if (!targetGameObject.TryGetComponent<Targetable>(out var target))
                 return;
 
-            _target = target;
+            Target = target;
         }
 
         [Server]
-        public void ClearTarget() => _target = null;
-
-        #endregion
-
-        #region Client
-
-
+        public void ClearTarget() => Target = null;
 
         #endregion
     }

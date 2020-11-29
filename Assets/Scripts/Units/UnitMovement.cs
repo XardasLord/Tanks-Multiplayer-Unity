@@ -9,12 +9,28 @@ namespace Units
     {
         [SerializeField] private NavMeshAgent agent;
         [SerializeField] private Targeter targeter;
+        [SerializeField] private float chaseRange = 10f;
 
         #region Server
 
         [ServerCallback]
         private void Update()
         {
+            var target = targeter.Target;
+
+            if (target != null)
+            {
+                if (ShouldChaseTargeter(target))
+                {
+                    agent.SetDestination(target.transform.position);
+                }
+                else if (agent.hasPath)
+                {
+                    agent.ResetPath();
+                }
+                return;
+            }
+
             if (!agent.hasPath)
                 return;
 
@@ -22,6 +38,12 @@ namespace Units
                 return;
 
             agent.ResetPath();
+        }
+
+        private bool ShouldChaseTargeter(Targetable target)
+        {
+            // Square roots optimization, instead Vector3.Distance()
+            return (target.transform.position - transform.position).sqrMagnitude > chaseRange * chaseRange;
         }
 
         [Command]
